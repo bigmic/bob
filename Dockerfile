@@ -35,6 +35,7 @@ RUN npm install -g serverless
 RUN chown -R $USER:$(id -gn $USER) /root/.config
 
 
+
 RUN dotnet --version
 
 RUN npm --version
