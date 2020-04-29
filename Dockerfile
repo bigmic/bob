@@ -10,6 +10,7 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
+
 RUN apt update \
     && apt install \
     nodejs \
@@ -17,6 +18,7 @@ RUN apt update \
     zip \
     unzip \
     -y
+
 
 RUN curl -O https://bootstrap.pypa.io/get-pip.py
 
@@ -26,6 +28,7 @@ RUN pip install awscli --upgrade --user
 
 
 RUN dotnet tool install -g Amazon.Lambda.Tools
+
 
 RUN npm install -g serverless
 
@@ -46,4 +49,4 @@ RUN pip --version
 
 RUN aws --version
 
-RUN sls --version
+RUN serverless --version
