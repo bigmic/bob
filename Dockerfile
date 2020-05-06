@@ -17,6 +17,7 @@ RUN apt update \
     yarn \
     zip \
     unzip \
+    make \
     -y
 
 
@@ -30,24 +31,19 @@ RUN pip install awscli --upgrade --user
 RUN dotnet tool install -g Amazon.Lambda.Tools
 
 
-RUN npm install -g serverless
+RUN npm install -g serverless@1.69.0 nswag@13.4.2 redoc-cli@0.9.7
 
 RUN chown -R $USER:$(id -gn $USER) /root/.config
 
+RUN dotnet --version \
+    && npm --version \
+    && node --version \
+    && yarn --version \
+    && python --version \
+    && pip --version \
+    && aws --version \
+    && serverless --version
 
+WORKDIR /workspace
 
-RUN dotnet --version
-
-RUN npm --version
-
-RUN node --version
-
-RUN yarn --version
-
-RUN python --version
-
-RUN pip --version
-
-RUN aws --version
-
-RUN serverless --version
+CMD ["/bin/bash"]
